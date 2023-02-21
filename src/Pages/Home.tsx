@@ -246,6 +246,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                 ? "block bg-green font-regular mb-2 text-white rounded-lg"
                 : "text-logo font-regular mb-2  block rounded-lg"
             }
+            onClick={handleDrawerClose}
           >
             <ListItemButton
               sx={{
@@ -285,6 +286,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                 ? "block bg-green font-regular mb-2 text-white rounded-lg"
                 : "text-logo font-regular mb-2  block rounded-lg"
             }
+            onClick={handleDrawerClose}
           >
             <ListItemButton
               sx={{
@@ -309,7 +311,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                 </svg>
               </ListItemIcon>
               <p
-                className={`transition-all ease-in-out duration-500 ${
+                className={`transition-all ease-in-out duration-100 ${
                   open ? "opacity-100 w-auto" : "opacity-0 w-0"
                 }`}
               >
@@ -324,6 +326,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                 ? "block bg-green font-regular mb-2 text-white rounded-lg"
                 : "text-logo font-regular mb-2  block rounded-lg"
             }
+            onClick={handleDrawerClose}
           >
             <ListItemButton
               sx={{
