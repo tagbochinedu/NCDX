@@ -240,7 +240,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
         </div>
         <ul className="px-2">
           <NavLink
-            to="/dashboard"
+            to="/"
             className={({ isActive }) =>
               isActive
                 ? "block bg-green font-regular mb-2 text-white rounded-lg"
