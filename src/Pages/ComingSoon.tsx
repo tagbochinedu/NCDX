@@ -21,11 +21,11 @@ const ComingSoon = () => {
           type="email"
           className="px-3 py-1.5 text-lg border-lgr2 hover:border-lgr border-2 rounded-lg outline-2 focus:outline-green"
           placeholder="Enter email here"
+          onChange={emailChangeHandler}
         />
         <button
           type="submit"
           className="bg-green py-2 rounded-lg ml-3 px-3 text-lg text-white"
-          onChange={emailChangeHandler}
         >
           NOTIFY
         </button>
