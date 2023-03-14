@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridColumnMenu } from "@mui/x-data-grid";
 
 const columns: GridColDef[] = [
   {
@@ -118,19 +118,24 @@ const rows = [
 
 export default function DataTable() {
   return (
-    <div style={{ height: 400, width: "100%" }}>
+    <div style={{ height: 475, width: "100%" }}>
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSizeOptions={[10]}
+        pageSizeOptions={[100]}
         checkboxSelection
         autoPageSize={true}
+        slots={{
+          columnMenu: GridColumnMenu,
+        }}
         sx={{
-          "& .css-yrdy0g-MuiDataGrid-columnHeaderRow ": {
+          ".MuiDataGrid-columnHeader": {
             backgroundColor: "#EDEFF1",
             color: "rgba(76, 78, 100, 0.87)",
           },
-         
+          ".MuiDataGrid-columnSeparator": {
+            visibility: "visible",
+          },
         }}
       />
     </div>
