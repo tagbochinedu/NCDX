@@ -111,7 +111,7 @@ const Form: React.FC = () => {
         onSubmit={(e: any) => {
           handleSubmit(e);
         }}
-        className="p-4 md:p-8 drop-shadow-xl rounded-xl md:rounded-3xl mx-auto bg-white mt-5"
+        className="p-4 md:p-8 drop-shadow-xl rounded-xl md:rounded-3xl mx-16 bg-white mt-5"
       >
         <div className={currentStep === 1 ? "block" : "hidden"}>
           {

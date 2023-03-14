@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
-import Radar from "../Components/Radar";
+
 
 interface ChartData {
   series: { name: string; data: number[] }[];

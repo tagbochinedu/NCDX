@@ -1,5 +1,5 @@
 import * as React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
@@ -8,7 +8,6 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
-
 
 const drawerWidth = 280;
 
@@ -96,6 +95,8 @@ const Dashboard: React.FC<Props> = ({ children }) => {
   const [dropdown1, setDropdown1] = React.useState(false);
   const [dropdown2, setDropdown2] = React.useState(false);
   const [dropdown3, setDropdown3] = React.useState(false);
+  const location = useLocation();
+  const { pathname } = location;
 
   const handleDrawerOpen = () => {
     setTempOpen(false);
@@ -199,7 +200,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
             </svg>
             <p
               className={`transition-all ease-in-out duration-500 font-bold text-2xl text-logo ${
-                open ? "opacity-100 w-auto" : "opacity-0 w-0"
+                open ? "block w-auto" : "hidden w-0"
               }`}
             >
               GCX
@@ -207,7 +208,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
           </div>
           <div>
             <svg
-              className={`w-6 h-6 transition-all ease-in-out duration-500 ${
+              className={`w-6 h-6 transition-all ease-in-out duration-500 cursor-pointer ${
                 tempOpen ? "rotate-180" : ""
               }`}
               viewBox="0 0 22 22"
@@ -226,13 +227,17 @@ const Dashboard: React.FC<Props> = ({ children }) => {
           </div>
         </div>
 
-        <div className="flex justify-start items-center mt-7 mb-4">
+        <div
+          className={`flex justify-start items-center ${
+            open ? "mt-7 mb-4" : "mt-10 mb-7"
+          }`}
+        >
           <hr
             className={`h-[2px] bg-lgr ${open ? " w-4 mr-3" : "w-5 mx-auto"}`}
           />{" "}
           <p
-            className={`transition-all ease-in-out duration-500 text-sm text-lgr ${
-              open ? "opacity-100 w-auto" : "opacity-0 w-0"
+            className={`text-sm text-lgr ${
+              open ? "block w-auto" : "hidden w-0"
             }`}
           >
             MAIN SECTION
@@ -265,14 +270,16 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 576 512"
-                  className={`fill-logo text-white w-5 h-5`}
+                  className={`text-white w-5 h-5 ${
+                    pathname === "/" ? "fill-white" : "fill-logo"
+                  }`}
                 >
                   <path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
                 </svg>
               </ListItemIcon>
               <p
-                className={`transition-all ease-in-out duration-500 ${
-                  open ? "opacity-100 w-auto" : "opacity-0 w-0"
+                className={`transition-all ease-in-out duration-100 ${
+                  open ? "block w-auto" : "hidden w-0"
                 }`}
               >
                 Dashboard
@@ -305,14 +312,16 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 448 512"
-                  className={`fill-logo text-white w-5 h-5`}
+                  className={` text-white w-5 h-5 ${
+                    pathname.includes("/users") ? "fill-white" : "fill-logo"
+                  }`}
                 >
                   <path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z" />
                 </svg>
               </ListItemIcon>
               <p
                 className={`transition-all ease-in-out duration-100 ${
-                  open ? "opacity-100 w-auto" : "opacity-0 w-0"
+                  open ? "block w-auto" : "hidden w-0"
                 }`}
               >
                 Users
@@ -343,7 +352,9 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                 }}
               >
                 <svg
-                  className={`fill-logo text-white w-5 h-5`}
+                  className={`text-white w-5 h-5 ${
+                    pathname.includes("forms") ? "fill-white" : "fill-logo "
+                  }`}
                   focusable="false"
                   aria-hidden="true"
                   viewBox="0 0 24 24"
@@ -354,7 +365,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
               </ListItemIcon>
               <p
                 className={`transition-all ease-in-out duration-500 ${
-                  open ? "opacity-100 w-auto" : "opacity-0 w-0"
+                  open ? "block w-auto" : "hidden w-0"
                 }`}
               >
                 Forms
@@ -362,13 +373,17 @@ const Dashboard: React.FC<Props> = ({ children }) => {
             </ListItemButton>
           </NavLink>
         </ul>
-        <div className="flex justify-start items-center mt-6 mb-4">
+        <div
+          className={`flex justify-start items-center ${
+            open ? "mt-6 mb-4" : "mt-9 mb-6"
+          }`}
+        >
           <hr
             className={`h-[2px] bg-lgr ${open ? "w-4  mr-3" : "w-5 mx-auto"}`}
           />{" "}
           <p
-            className={`transition-all ease-in-out duration-500 text-sm text-lgr ${
-              open ? "opacity-100 w-auto" : "opacity-0 w-0"
+            className={`text-sm text-lgr ${
+              open ? "block w-auto" : "hidden w-0"
             }`}
           >
             BONUS SECTION
@@ -389,55 +404,56 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                 setDropdown3(false);
               }}
             >
-              <div className="flex">
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : "auto",
+                  justifyContent: "center",
+                }}
+              >
+                <svg
+                  className={`text-white w-5 h-5 ${
+                    open ? "fill-logo" : "fill-logo"
+                  } `}
+                  focusable="false"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  data-testid="ArchiveOutlineIcon"
                 >
-                  <svg
-                    className={`text-white w-5 h-5 ${
-                      open ? "fill-logo" : "auto fill-logo"
-                    }`}
-                    focusable="false"
-                    aria-hidden="true"
-                    viewBox="0 0 24 24"
-                    data-testid="ArchiveOutlineIcon"
-                  >
-                    <path d="M20 21H4V10H6V19H18V10H20V21M3 3H21V9H3V3M9.5 11H14.5C14.78 11 15 11.22 15 11.5V13H9V11.5C9 11.22 9.22 11 9.5 11M5 5V7H19V5H5Z"></path>
-                  </svg>
-                </ListItemIcon>
-                <p
-                  className={`flex items-center transition-all ease-in-out duration-500 ${
-                    open ? "opacity-100 w-auto" : "opacity-0 w-0"
+                  <path d="M20 21H4V10H6V19H18V10H20V21M3 3H21V9H3V3M9.5 11H14.5C14.78 11 15 11.22 15 11.5V13H9V11.5C9 11.22 9.22 11 9.5 11M5 5V7H19V5H5Z"></path>
+                </svg>
+              </ListItemIcon>
+              <p
+                className={`flex items-center transition-all ease-in-out duration-500 ${
+                  open ? "block w-auto" : "hidden w-0"
+                }`}
+              >
+                Utility Pages
+                <svg
+                  className={`fill-logo w-5 h-5 transition-all ease-in-out duration-500 ml-12 ${
+                    dropdown1 ? "rotate-90" : ""
                   }`}
+                  focusable="false"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  data-testid="ChevronRightIcon"
                 >
-                  Utility Pages
-                  <svg
-                    className={`fill-logo w-5 h-5 transition-all ease-in-out duration-500 ml-12 ${
-                      dropdown1 ? "rotate-90" : ""
-                    }`}
-                    focusable="false"
-                    aria-hidden="true"
-                    viewBox="0 0 24 24"
-                    data-testid="ChevronRightIcon"
-                  >
-                    <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
-                  </svg>
-                </p>
-              </div>
+                  <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+                </svg>
+              </p>
             </ListItemButton>
             <ul
               className={`transition-all ease-in-out duration-500 overflow-hidden ${
-                dropdown1 ? "h-[230px] opacity-100" : "h-[0px] opacity-0"
+                dropdown1 ? "h-[230px] opacity-100 mt-2" : "h-[0px] opacity-0"
               }`}
             >
               <NavLink
                 to="/util/coming-soon"
-                target="_blank"
-                className="text-logo font-regular mb-2  block rounded-lg"
+                className={({ isActive }) =>
+                  isActive
+                    ? "block bg-green font-regular mb-2 text-white rounded-lg"
+                    : "text-logo font-regular mb-2  block rounded-lg"
+                }
               >
                 <ListItemButton
                   sx={{
@@ -453,12 +469,18 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                       justifyContent: "center",
                     }}
                   >
-                    <div className="bg-logo w-2 h-2 ml-1.5 rounded-full" />
+                    <div
+                      className={`w-2 h-2 ml-1.5 rounded-full ${
+                        pathname.includes("/util/coming-soon")
+                          ? "bg-white"
+                          : "bg-logo"
+                      }`}
+                    />
                   </ListItemIcon>
                   <p
                     className={`transition-all ease-in-out duration-500 ${
-                      open ? "opacity-100 w-auto" : "opacity-0 w-0"
-                    }`}
+                      open ? "block w-auto" : "hidden w-0"
+                    } `}
                   >
                     Coming Soon
                   </p>
@@ -466,8 +488,11 @@ const Dashboard: React.FC<Props> = ({ children }) => {
               </NavLink>
               <NavLink
                 to="/util/under-maintenance"
-                target="_blank"
-                className="text-logo font-regular mb-2  block rounded-lg"
+                className={({ isActive }) =>
+                  isActive
+                    ? "block bg-green font-regular mb-2 text-white rounded-lg"
+                    : "text-logo font-regular mb-2  block rounded-lg"
+                }
               >
                 <ListItemButton
                   sx={{
@@ -483,12 +508,19 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                       justifyContent: "center",
                     }}
                   >
-                    <div className="bg-logo w-2 h-2 ml-1.5 rounded-full" />
+                    <div
+                      className={`w-2 h-2 ml-1.5 rounded-full ${
+                        pathname.includes("/util/under-maintenance")
+                          ? "bg-white"
+                          : "bg-logo"
+                      }`}
+                    />
                   </ListItemIcon>
                   <p
                     className={`transition-all ease-in-out duration-500 ${
-                      open ? "opacity-100 w-auto" : "opacity-0 w-0"
-                    }`}
+                      open ? "block w-auto" : "hidden w-0"
+                    }
+                     `}
                   >
                     Under Maintenance
                   </p>
@@ -496,8 +528,11 @@ const Dashboard: React.FC<Props> = ({ children }) => {
               </NavLink>
               <NavLink
                 to="/util/page-not-found-404"
-                target="_blank"
-                className="text-logo font-regular mb-2  block rounded-lg"
+                className={({ isActive }) =>
+                  isActive
+                    ? "block bg-green font-regular mb-2 text-white rounded-lg"
+                    : "text-logo font-regular mb-2  block rounded-lg"
+                }
               >
                 <ListItemButton
                   sx={{
@@ -513,12 +548,18 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                       justifyContent: "center",
                     }}
                   >
-                    <div className="bg-logo w-2 h-2 ml-1.5 rounded-full" />
+                    <div
+                      className={`w-2 h-2 ml-1.5 rounded-full ${
+                        pathname.includes("/util/page-not-found-404")
+                          ? "bg-white"
+                          : "bg-logo"
+                      }`}
+                    />
                   </ListItemIcon>
                   <p
                     className={`transition-all ease-in-out duration-500 ${
-                      open ? "opacity-100 w-auto" : "opacity-0 w-0"
-                    }`}
+                      open ? "block w-auto" : "hidden w-0"
+                    } `}
                   >
                     Page Not Found - 404
                   </p>
@@ -526,8 +567,11 @@ const Dashboard: React.FC<Props> = ({ children }) => {
               </NavLink>
               <NavLink
                 to="/util/not-authorized-401"
-                target="_blank"
-                className="text-logo font-regular mb-2  block rounded-lg"
+                className={({ isActive }) =>
+                  isActive
+                    ? "block bg-green font-regular mb-2 text-white rounded-lg"
+                    : "text-logo font-regular mb-2  block rounded-lg"
+                }
               >
                 <ListItemButton
                   sx={{
@@ -543,11 +587,17 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                       justifyContent: "center",
                     }}
                   >
-                    <div className="bg-logo w-2 h-2 ml-1.5 rounded-full" />
+                    <div
+                      className={`w-2 h-2 ml-1.5 rounded-full ${
+                        pathname.includes("/util/not-authorized-401")
+                          ? "bg-white"
+                          : "bg-logo"
+                      }`}
+                    />
                   </ListItemIcon>
                   <p
                     className={`transition-all ease-in-out duration-500 ${
-                      open ? "opacity-100 w-auto" : "opacity-0 w-0"
+                      open ? "block w-auto" : "hidden w-0"
                     }`}
                   >
                     Not Authorized - 401
@@ -556,8 +606,11 @@ const Dashboard: React.FC<Props> = ({ children }) => {
               </NavLink>
               <NavLink
                 to="/util/server-error-501"
-                target="_blank"
-                className="text-logo font-regular mb-2  block rounded-lg"
+                className={({ isActive }) =>
+                  isActive
+                    ? "block bg-green font-regular mb-2 text-white rounded-lg"
+                    : "text-logo font-regular mb-2  block rounded-lg"
+                }
               >
                 <ListItemButton
                   sx={{
@@ -573,12 +626,18 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                       justifyContent: "center",
                     }}
                   >
-                    <div className="bg-logo w-2 h-2 ml-1.5 rounded-full" />
+                    <div
+                      className={`w-2 h-2 ml-1.5 rounded-full ${
+                        pathname.includes("/util/server-error-501")
+                          ? "bg-white"
+                          : "bg-logo"
+                      }`}
+                    />
                   </ListItemIcon>
                   <p
                     className={`transition-all ease-in-out duration-500 ${
-                      open ? "opacity-100 w-auto" : "opacity-0 w-0"
-                    }`}
+                      open ? "block w-auto" : "hidden w-0"
+                    } `}
                   >
                     Server Error - 501
                   </p>
@@ -600,45 +659,43 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                 setDropdown3(false);
               }}
             >
-              <div className="flex">
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  <svg
-                    className={`text-white w-5 h-5 ${
-                      open ? "fill-logo" : "auto fill-logo"
-                    }`}
-                    focusable="false"
-                    aria-hidden="true"
-                    viewBox="0 0 24 24"
-                    data-testid="ArchiveOutlineIcon"
-                  >
-                    <path d="M20 21H4V10H6V19H18V10H20V21M3 3H21V9H3V3M9.5 11H14.5C14.78 11 15 11.22 15 11.5V13H9V11.5C9 11.22 9.22 11 9.5 11M5 5V7H19V5H5Z"></path>
-                  </svg>
-                </ListItemIcon>
-                <p
-                  className={`flex items-center transition-all ease-in-out duration-500 ${
-                    open ? "opacity-100 w-auto" : "opacity-0 w-0"
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : "auto",
+                  justifyContent: "center",
+                }}
+              >
+                <svg
+                  className={`text-white w-5 h-5 ${
+                    open ? "fill-logo" : "auto fill-logo"
                   }`}
+                  focusable="false"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  data-testid="ArchiveOutlineIcon"
                 >
-                  Nested Routes
-                  <svg
-                    className={`fill-logo w-5 h-5 transition-all ease-in-out duration-500 ml-8 ${
-                      dropdown2 ? "rotate-90" : ""
-                    }`}
-                    focusable="false"
-                    aria-hidden="true"
-                    viewBox="0 0 24 24"
-                    data-testid="ChevronRightIcon"
-                  >
-                    <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
-                  </svg>
-                </p>
-              </div>
+                  <path d="M20 21H4V10H6V19H18V10H20V21M3 3H21V9H3V3M9.5 11H14.5C14.78 11 15 11.22 15 11.5V13H9V11.5C9 11.22 9.22 11 9.5 11M5 5V7H19V5H5Z"></path>
+                </svg>
+              </ListItemIcon>
+              <p
+                className={`flex items-center transition-all ease-in-out duration-500 ${
+                  open ? "block w-auto" : "hidden w-0"
+                }`}
+              >
+                Nested Routes
+                <svg
+                  className={`fill-logo w-5 h-5 transition-all ease-in-out duration-500 ml-8 ${
+                    dropdown2 ? "rotate-90" : ""
+                  }`}
+                  focusable="false"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  data-testid="ChevronRightIcon"
+                >
+                  <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+                </svg>
+              </p>
             </ListItemButton>
             <ul
               className={`transition-all ease-in-out duration-500 overflow-hidden ${
@@ -668,7 +725,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                   </ListItemIcon>
                   <p
                     className={`text-lgr transition-all ease-in-out duration-500 ${
-                      open ? "opacity-100 w-auto" : "opacity-0 w-0"
+                      open ? "block w-auto" : "hidden w-0"
                     }`}
                   >
                     L - 1
@@ -699,7 +756,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                     </ListItemIcon>
                     <p
                       className={`flex items-center transition-all ease-in-out duration-500 ${
-                        open ? "opacity-100 w-auto" : "opacity-0 w-0"
+                        open ? "block w-auto" : "hidden w-0"
                       }`}
                     >
                       L -1B
@@ -741,7 +798,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                       </ListItemIcon>
                       <p
                         className={`text-lgr transition-all ease-in-out duration-500 ${
-                          open ? "opacity-100 w-auto" : "opacity-0 w-0"
+                          open ? "block w-auto" : "hidden w-0"
                         }`}
                       >
                         L - 2A
@@ -767,7 +824,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                         ></ListItemIcon>
                         <p
                           className={`flex items-center transition-all ease-in-out duration-500 ${
-                            open ? "opacity-100 w-auto" : "opacity-0 w-0"
+                            open ? "block w-auto" : "hidden w-0"
                           }`}
                         >
                           L -2B
@@ -803,7 +860,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
               >
                 <svg
                   className={`text-white w-5 h-5 ${
-                    open ? "fill-logo" : "auto fill-logo"
+                    pathname.includes("theming-control") ? "fill-white" : "fill-logo "
                   }`}
                   focusable="false"
                   aria-hidden="true"
@@ -815,7 +872,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
               </ListItemIcon>
               <p
                 className={`transition-all ease-in-out duration-500 ${
-                  open ? "opacity-100 w-auto" : "opacity-0 w-0"
+                  open ? "block w-auto" : "hidden w-0"
                 }`}
               >
                 Theming Control
@@ -824,11 +881,14 @@ const Dashboard: React.FC<Props> = ({ children }) => {
           </NavLink>
         </ul>
       </Drawer>
-     <Box component='main' sx={{flexGrow: 1, position: 'relative'}}>
-      <Header/>
-      {children}
-      <Footer/>
-     </Box>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, position: "relative", minHeight: "100%" }}
+      >
+        <Header />
+        {children}
+        <Footer />
+      </Box>
     </Box>
   );
 };

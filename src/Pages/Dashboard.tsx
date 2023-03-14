@@ -2,12 +2,33 @@ import React, { useState } from "react";
 import Radar from "../Components/Radar";
 import BarChart from "../Components/BarChart";
 import NegativeBarChart from "../Components/NegativeBarChart";
+import BoxWrapper from "../Components/ReusableComponents/Container";
 
 const Dashboard: React.FC = () => {
+  const Styles = {
+    normalStyles: {
+      m: "16px",
+      p: "20px",
+    },
+    barChart: {
+      m: "16px",
+      paddingTop: "20px",
+      paddingLeft: "20px",
+      paddingRight: "20px",
+    },
+    negativeBarChart: {
+      display: "block",
+      "@media(min-width: 640px)": {
+        display: "flex",
+      },
+      m: "16px",
+    },
+  };
+
   return (
     <div className="md:flex flex-wrap w-full pb-10 ">
       <div className="md:w-6/12 lg:w-4/12">
-        <div className="m-4 rounded-lg bg-white p-5 drop-shadow-lg">
+        <BoxWrapper styling={Styles.normalStyles}>
           <div className="flex justify-between">
             <div className="bg-[#E3F8FE] py-2 px-2 rounded-md">
               <svg
@@ -40,10 +61,10 @@ const Dashboard: React.FC = () => {
           <div className="bg-lgr2 py-0.5 px-2 text-lgr text-xs rounded-full max-w-fit">
             Last One Year
           </div>
-        </div>
+        </BoxWrapper>
       </div>
       <div className="md:w-6/12 lg:w-4/12">
-        <div className="m-4 rounded-lg bg-white p-5 drop-shadow-lg">
+        <BoxWrapper styling={Styles.normalStyles}>
           <div className="flex justify-between">
             <div className="bg-[#ECFBE5] py-2 px-2 rounded-md">
               <svg
@@ -76,20 +97,20 @@ const Dashboard: React.FC = () => {
           <div className="bg-lgr2 py-0.5 px-2 text-lgr text-xs rounded-full max-w-fit">
             Last Six Months
           </div>
-        </div>
+        </BoxWrapper>
       </div>
       <div className="md:w-6/12 lg:w-4/12">
-        <div className="m-4 rounded-lg bg-white px-5 pt-5 drop-shadow-lg">
+        <BoxWrapper styling={Styles.barChart}>
           <div className="flex justify-start items-center">
             {" "}
             <p className="text-logo font-medium text-lg">$67.2k</p>
             <p className="text-red-500 text-sm ml-2">-20% </p>
           </div>
           <BarChart />
-        </div>
+        </BoxWrapper>
       </div>
       <div className="md:w-full lg:w-8/12">
-        <div className="m-4 rounded-lg bg-white drop-shadow-lg md:flex">
+        <BoxWrapper styling={Styles.negativeBarChart}>
           <div className="md:w-7/12 border-r-[1px] p-5 border-lgr2">
             <p className="text-logo font-medium text-lg">Total XXX</p>
             <NegativeBarChart />
@@ -143,13 +164,13 @@ const Dashboard: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </BoxWrapper>
       </div>
       <div className="md:w-6/12 lg:w-4/12">
-        <div className="m-4 rounded-lg bg-white p-5 drop-shadow-lg">
+        <BoxWrapper styling={Styles.normalStyles}>
           <p className="text-logo font-medium text-lg">FX Radar</p>
           <Radar />
-        </div>
+        </BoxWrapper>
       </div>
     </div>
   );

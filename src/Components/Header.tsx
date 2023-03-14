@@ -17,12 +17,11 @@ const Header = () => {
     } else {
       setTransition(false);
     }
-    console.log(scrolled);
   }, [scrolled]);
 
   return (
     <header
-      className={`mx-5 py-5 transition-all ease-in-out duration-300 sticky flex justify-between items-center top-0 z-10 ${
+      className={`mx-[18px] py-5 transition-all ease-in-out duration-300 sticky flex justify-between items-center top-0 z-10 ${
         transition ? "bg-white shadow-md shadow-lgr rounded-b-lg px-4" : ""
       }`}
     >
