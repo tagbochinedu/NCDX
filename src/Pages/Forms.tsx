@@ -17,7 +17,7 @@ const Form: React.FC = () => {
     } else if (currentStep === 3 && thirdCheck) {
       return setCurrentStep(currentStep + 1);
     } else {
-      alert("Some Input Fields are empty. Fill them before moving on");
+      alert("Some input fields are empty. Fill them before moving on");
     }
     console.log(currentStep, firstCheck);
   };
