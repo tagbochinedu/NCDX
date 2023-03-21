@@ -4,10 +4,11 @@ import Button from "@mui/material/Button";
 interface Props {
   variant: "contained" | "outlined" | "text";
   styling: any;
-  startIcon: ReactNode;
+  startIcon?: ReactNode;
   disableElevation: boolean;
   size: "small" | "medium" | "large";
   children: ReactNode
+  onClick?: any
 }
 
 const Clickable = ({
@@ -15,7 +16,7 @@ const Clickable = ({
   styling,
   startIcon,
   disableElevation,
-  size, children
+  size, children, onClick
 }: Props) => {
   return (
     <Button
@@ -24,6 +25,7 @@ const Clickable = ({
       startIcon={startIcon}
       disableElevation={disableElevation}
       size={size}
+      onClick={onClick}
     >{children}</Button>
   );
 };

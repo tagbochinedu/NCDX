@@ -1,133 +1,220 @@
-import * as React from "react";
 import { DataGrid, GridColDef, GridColumnMenu } from "@mui/x-data-grid";
+
+import ActionButton from "./ActionButton";
+import { UserInterface } from "../Data/Data";
+import { Typography, Box } from "@mui/material";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+import LaptopOutlinedIcon from "@mui/icons-material/LaptopOutlined";
+import DataSaverOffOutlinedIcon from "@mui/icons-material/DataSaverOffOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
+
+interface CellType {
+  row: UserInterface;
+}
+interface Props {
+  rows: UserInterface[];
+}
 
 const columns: GridColDef[] = [
   {
-    field: "USER",
+    field: "fullName",
     headerName: "USER",
-    width: 245,
-    headerClassName: "super-app-theme--header",
+    flex: 0.2,
+       headerClassName: "super-app-theme--header",
+    renderCell: ({ row }: CellType) => {
+      return (
+        <Box>
+          <Box>
+            <Typography
+              variant="subtitle2"
+              component="p"
+              sx={{ color: "#626477", fontWeight: 600 }}
+            >
+              {row.fullName}
+            </Typography>
+            <Typography
+              variant="caption"
+              component="p"
+              sx={{
+                color: "#B6B6C0",
+                fontWeight: 500,
+                textTransform: "capitalize",
+              }}
+            >
+              @{row.username}
+            </Typography>
+          </Box>
+        </Box>
+      );
+    },
   },
   {
-    field: "EMAIL",
+    field: "email",
     headerName: "EMAIL",
-    width: 270,
-    headerClassName: "super-app-theme--header",
+    flex: 0.2,
+       headerClassName: "super-app-theme--header",
+    renderCell: ({ row }: CellType) => {
+      return (
+        <Box>
+          <Typography
+            variant="subtitle2"
+            component="p"
+            sx={{ color: "#626477", fontWeight: 500 }}
+          >
+            {row.email}
+          </Typography>
+        </Box>
+      );
+    },
   },
   {
-    field: "ROLE",
+    field: "role",
     headerName: "ROLE",
-    width: 210,
-    headerClassName: "super-app-theme--header",
+    flex: 0.2,
+       headerClassName: "super-app-theme--header",
+    renderCell: ({ row }: CellType) => {
+      let icon = <></>;
+      const role = row.role;
+      const styles = { icons: { marginRight: 1 } };
+
+      switch (role) {
+        case "admin":
+          icon = <LaptopOutlinedIcon sx={{ ...styles.icons, color: "red" }} />;
+          break;
+        case "editor":
+          icon = (
+            <ModeEditOutlineOutlinedIcon
+              sx={{ ...styles.icons, color: "#47C6F9" }}
+            />
+          );
+          break;
+        case "author":
+          icon = (
+            <SettingsOutlinedIcon sx={{ ...styles.icons, color: "#F8C04B" }} />
+          );
+          break;
+        case "maintainer":
+          icon = (
+            <DataSaverOffOutlinedIcon
+              sx={{ ...styles.icons, color: "#72E028" }}
+            />
+          );
+          break;
+        case "subscriber":
+          icon = (
+            <PersonOutlineOutlinedIcon
+              sx={{ ...styles.icons, color: "#72E028" }}
+            />
+          );
+          break;
+      }
+      return (
+        <Box>
+          <Typography
+            variant="subtitle1"
+            component="p"
+            sx={{
+              color: "#626477",
+              fontWeight: 500,
+              textTransform: "capitalize",
+            }}
+          >
+            {icon}
+            {row.role}
+          </Typography>
+        </Box>
+      );
+    },
   },
   {
-    field: "PLAN",
+    field: "currentPlan",
     headerName: "PLAN",
-    width: 200,
-    headerClassName: "super-app-theme--header",
+    flex: 0.2,
+       headerClassName: "super-app-theme--header",
+    renderCell: ({ row }: CellType) => {
+      return (
+        <Box>
+          <Typography
+            variant="subtitle1"
+            component="p"
+            sx={{
+              color: "#626477",
+              fontWeight: 500,
+              textTransform: "capitalize",
+            }}
+          >
+            {row.currentPlan}
+          </Typography>
+        </Box>
+      );
+    },
   },
 
   {
-    field: "STATUS",
+    field: "status",
     headerName: "STATUS",
     headerClassName: "super-app-theme--header",
-    width: 130,
+    flex: 0.1,
+       renderCell: ({ row }: CellType) => {
+      return (
+        <Box
+          sx={{
+            backgroundColor:
+              row.status === "active"
+                ? "#E5F4DF"
+                : row.status === "inactive"
+                ? "#E6E7EA"
+                : "#F8EFDE",
+            paddingTop: "2px",
+            paddingBottom: "2px",
+            paddingLeft: "10px",
+            paddingRight: "10px",
+            borderRadius: "20px",
+          }}
+        >
+          <Typography
+            variant="subtitle2"
+            component="p"
+            sx={{
+              color:
+                row.status === "inactive"
+                  ? "#626477"
+                  : row.status === "active"
+                  ? "#72E028"
+                  : "#F8C04B",
+              fontWeight: 500,
+              textTransform: "capitalize",
+            }}
+          >
+            {row.status}
+          </Typography>
+        </Box>
+      );
+    },
   },
   {
     field: "ACTIONS",
     headerName: "ACTIONS",
     headerClassName: "super-app-theme--header",
-    width: 131,
+    flex: 0.1,
+       renderCell: ({ row }: CellType) => {
+      return <ActionButton id={row.id} />;
+    },
   },
 ];
 
-const rows = [
-  {
-    id: 1,
-    USER: "Snow",
-    EMAIL: "Jon",
-    ROLE: "35 ",
-    PLAN: "nothing",
-    STATUS: "nothing",
-  },
-  {
-    id: 2,
-    USER: "Lannister",
-    EMAIL: "Cersei",
-    ROLE: "42 ",
-    PLAN: "nothing",
-    STATUS: "nothing",
-  },
-  {
-    id: 3,
-    USER: "Lannister",
-    EMAIL: "Jaime",
-    ROLE: "45 ",
-    PLAN: "nothing",
-    STATUS: "nothing",
-  },
-  {
-    id: 4,
-    USER: "Stark",
-    EMAIL: "Arya",
-    ROLE: "16 ",
-    PLAN: "nothing",
-    STATUS: "nothing",
-  },
-  {
-    id: 5,
-    USER: "Targaryen",
-    EMAIL: "Daenerys",
-    ROLE: null,
-    PLAN: "nothing",
-    STATUS: "nothing",
-  },
-  {
-    id: 6,
-    USER: "Melisandre",
-    EMAIL: null,
-    ROLE: "150",
-    PLAN: "nothing",
-    STATUS: "nothing",
-  },
-  {
-    id: 7,
-    USER: "Clifford",
-    EMAIL: "Ferrara",
-    ROLE: "44 ",
-    PLAN: "nothing",
-    STATUS: "nothing",
-  },
-  {
-    id: 8,
-    USER: "Frances",
-    EMAIL: "Rossini",
-    ROLE: "36 ",
-    PLAN: "nothing",
-    STATUS: "nothing",
-  },
-  {
-    id: 9,
-    USER: "Roxie",
-    EMAIL: "Harvey",
-    ROLE: "65 ",
-    PLAN: "nothing",
-    STATUS: "nothing",
-  },
-];
-
-export default function DataTable() {
+export default function DataTable({ rows }: Props) {
   return (
-    <div style={{ height: 475, width: "100%" }}>
+    <div style={{  }}>
       <DataGrid
+        autoHeight
         rows={rows}
         columns={columns}
-        pageSizeOptions={[100]}
+        rowsPerPageOptions
         checkboxSelection
-        autoPageSize={true}
-        slots={{
-          columnMenu: GridColumnMenu,
-        }}
+        disableRowSelectionOnClick
+        autoPageSize={false}
         sx={{
           ".MuiDataGrid-columnHeader": {
             backgroundColor: "#EDEFF1",
@@ -136,6 +223,7 @@ export default function DataTable() {
           ".MuiDataGrid-columnSeparator": {
             visibility: "visible",
           },
+          ".super-app-theme--header": {},
         }}
       />
     </div>

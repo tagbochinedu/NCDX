@@ -4,6 +4,9 @@ import App from "./App";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Provider } from "react-redux";
+import { store } from "./Store/Store";
+
 
 const theme = createTheme({
   palette: {
@@ -18,9 +21,11 @@ const theme = createTheme({
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <BrowserRouter>
-    <ThemeProvider theme={theme}>
-      {" "}
-      <App />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        {" "}
+        <App />
+      </ThemeProvider>
+    </Provider>
   </BrowserRouter>
 );

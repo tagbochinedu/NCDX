@@ -1,49 +1,53 @@
 import * as React from "react";
-
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
+import { MenuItem, InputLabel, Box, FormControl } from "@mui/material";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 interface Props {
   option: string[];
   inputLabel: string;
+  value: string;
+  changeHandler: any;
 }
 
+export default function BasicSelect({
+  option,
+  inputLabel,
+  value,
+  changeHandler,
+}: Props) {
+  const handleChange = (event: SelectChangeEvent) => {
+    changeHandler(event.target.value as string);
+    console.log(event.target.value);
+  };
 
-export default function CountrySelect({ option, inputLabel }: Props) {
   return (
-    <Autocomplete
-      id="country-select-demo"
+    <Box
       sx={{
-        width: "31%",
-        "& .MuiOutlinedInput-root": {
-          borderRadius: "8px",
-        },
-        "& .MuiOutlinedInput-root:hover": {
-          borderColor: "#626477",
-        },
+        minWidth: "31%",
       }}
-      options={option}
-      autoHighlight={true}
-      renderOption={(props, option) => (
-        <Box
-          component="li"
-          sx={{ height: "50px", color: "#626477" }}
-          {...props}
-        >
-          {option}
-        </Box>
-      )}
-      renderInput={(params) => (
-        <TextField
-          {...params}
+    >
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">{inputLabel}</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={value}
           label={inputLabel}
-          inputProps={{
-            ...params.inputProps,
-            autoComplete: "new-password", // disable autocomplete and autofill
+          onChange={handleChange}
+          sx={{
+            borderRadius: "8px",
           }}
-        />
-      )}
-    />
+        >
+          <MenuItem value="" sx={{ color: "#626477" }}>
+            {inputLabel}
+          </MenuItem>
+          {option.map((item) => (
+            <MenuItem key={item} value={item} sx={{ color: "#626477" }}>
+              {item}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </Box>
   );
 }

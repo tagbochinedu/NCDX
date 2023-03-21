@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, ChangeEvent } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
@@ -7,8 +7,24 @@ import Clickable from "../Components/ReusableComponents/Clickable";
 import BoxWrapper from "../Components/ReusableComponents/Container";
 import Filter from "../Components/ReusableComponents/Filter";
 import UserTable from "../Components/UserTable";
+import UserForm from "../Components/UserForm";
+import { useSelector } from "react-redux";
+import { filterUserData } from "../Features/Users/UsersSlice";
+import { UserInterface } from "../Data/Data";
+import TextField from "@mui/material/TextField";
 
 const Users: React.FC = () => {
+  const [filter, setFilter] = useState({
+    role: "",
+    stat: "",
+    plan: "",
+    query: "",
+  });
+
+  const rows: UserInterface[] = useSelector((state: any) =>
+    filterUserData(state, filter)
+  );
+
   const roles: string[] = [
     "Admin",
     "Author",
@@ -47,21 +63,56 @@ const Users: React.FC = () => {
       },
       borderRadius: "8px",
     },
+    adduser: {
+      color: "white",
+      fontWeight: 600,
+      borderColor: "#B6B6C0",
+      borderRadius: "8px",
+    },
   };
   return (
     <Box sx={styles.container}>
       <BoxWrapper styling={styles.filter}>
         <Typography variant="h6" component="h6" sx={styles.heading}>
           Search Filters
-        </Typography>
+        </Typography>{" "}
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Filter option={roles} inputLabel="Select Role" />
-          <Filter option={plans} inputLabel="Select Plan" />
-          <Filter option={status} inputLabel="Select Status" />
+          <Filter
+            option={roles}
+            value={filter.role}
+            inputLabel="Select Role"
+            changeHandler={(val: string) => {
+              setFilter((prev) => ({ ...prev, role: val }));
+            }}
+          />
+          <Filter
+            option={plans}
+            value={filter.plan}
+            inputLabel="Select Plan"
+            changeHandler={(val: string) => {
+              setFilter((prev) => ({ ...prev, plan: val }));
+            }}
+          />
+          <Filter
+            option={status}
+            value={filter.stat}
+            inputLabel="Select Status"
+            changeHandler={(val: string) => {
+              setFilter((prev) => ({ ...prev, stat: val }));
+            }}
+          />
         </Box>
       </BoxWrapper>
       <BoxWrapper styling={styles.table}>
-        <Container>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: 2.5,
+            marginLeft: 2.5,
+            marginRight: 2.5,
+          }}
+        >
           <Clickable
             variant="outlined"
             disableElevation={true}
@@ -71,8 +122,45 @@ const Users: React.FC = () => {
           >
             EXPORT
           </Clickable>
-        </Container>
-        <UserTable />
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Box
+              component="form"
+              sx={{ marginRight: "25px" }}
+              noValidate
+              autoComplete="off"
+            >
+              <TextField
+                inputProps={{
+                  style: {
+                    padding: 9,
+                  },
+                }}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    borderRadius: "8px",
+                    color: "#626477",
+                    width: "275px",
+                  },
+                }}
+                type="text"
+                placeholder="Search User"
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  setFilter((prev) => ({ ...prev, query: e.target.value }));
+                }}
+              />
+            </Box>
+            <UserForm
+              variant="contained"
+              disableElevation={false}
+              styling={styles.adduser}
+              startIcon={<></>}
+              size="large"
+            >
+              ADD USER
+            </UserForm>
+          </Box>
+        </Box>
+        <UserTable rows={rows} />
       </BoxWrapper>
     </Box>
   );
