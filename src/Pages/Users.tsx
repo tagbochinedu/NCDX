@@ -36,7 +36,7 @@ const Users: React.FC = () => {
   const status: string[] = ["Pending", "Active", "Inactive"];
 
   const styles = {
-    container: { m: "16px" },
+    container: { m: "16px", flexShrink: 1 },
     filter: {
       paddingTop: 2,
       paddingBottom: 2.5,

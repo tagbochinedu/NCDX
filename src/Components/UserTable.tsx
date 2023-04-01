@@ -21,7 +21,7 @@ const columns: GridColDef[] = [
     field: "fullName",
     headerName: "USER",
     flex: 0.2,
-       headerClassName: "super-app-theme--header",
+  
     renderCell: ({ row }: CellType) => {
       return (
         <Box>
@@ -53,7 +53,7 @@ const columns: GridColDef[] = [
     field: "email",
     headerName: "EMAIL",
     flex: 0.2,
-       headerClassName: "super-app-theme--header",
+   
     renderCell: ({ row }: CellType) => {
       return (
         <Box>
@@ -72,7 +72,7 @@ const columns: GridColDef[] = [
     field: "role",
     headerName: "ROLE",
     flex: 0.2,
-       headerClassName: "super-app-theme--header",
+
     renderCell: ({ row }: CellType) => {
       let icon = <></>;
       const role = row.role;
@@ -131,7 +131,7 @@ const columns: GridColDef[] = [
     field: "currentPlan",
     headerName: "PLAN",
     flex: 0.2,
-       headerClassName: "super-app-theme--header",
+   
     renderCell: ({ row }: CellType) => {
       return (
         <Box>
@@ -154,9 +154,9 @@ const columns: GridColDef[] = [
   {
     field: "status",
     headerName: "STATUS",
-    headerClassName: "super-app-theme--header",
     flex: 0.1,
-       renderCell: ({ row }: CellType) => {
+   
+    renderCell: ({ row }: CellType) => {
       return (
         <Box
           sx={{
@@ -196,9 +196,9 @@ const columns: GridColDef[] = [
   {
     field: "ACTIONS",
     headerName: "ACTIONS",
-    headerClassName: "super-app-theme--header",
+  
     flex: 0.1,
-       renderCell: ({ row }: CellType) => {
+    renderCell: ({ row }: CellType) => {
       return <ActionButton id={row.id} />;
     },
   },
@@ -206,16 +206,20 @@ const columns: GridColDef[] = [
 
 export default function DataTable({ rows }: Props) {
   return (
-    <div style={{  }}>
+    <div style={{}}>
       <DataGrid
         autoHeight
         rows={rows}
         columns={columns}
-        rowsPerPageOptions
         checkboxSelection
+        initialState={{
+          pagination: { paginationModel: { pageSize: 5 } },
+        }}
+        pageSizeOptions={[5, 10, 25]}
         disableRowSelectionOnClick
         autoPageSize={false}
         sx={{
+          maxWidth: '100%',
           ".MuiDataGrid-columnHeader": {
             backgroundColor: "#EDEFF1",
             color: "rgba(76, 78, 100, 0.87)",
@@ -223,7 +227,6 @@ export default function DataTable({ rows }: Props) {
           ".MuiDataGrid-columnSeparator": {
             visibility: "visible",
           },
-          ".super-app-theme--header": {},
         }}
       />
     </div>

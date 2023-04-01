@@ -6,11 +6,29 @@ import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
+
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 
 const drawerWidth = 280;
-
+const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
+  open?: boolean;
+}>(({ theme, open }) => ({
+  flexGrow: 1,
+  padding: theme.spacing(3),
+  transition: theme.transitions.create("margin", {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  marginLeft: `-${drawerWidth}px`,
+  ...(open && {
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginLeft: 0,
+  }),
+}));
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
   transition: theme.transitions.create("width", {
@@ -90,8 +108,8 @@ interface Props {
 
 const Dashboard: React.FC<Props> = ({ children }) => {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-  const [tempOpen, setTempOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
+  const [tempOpen, setTempOpen] = React.useState(true);
   const [dropdown1, setDropdown1] = React.useState(false);
   const [dropdown2, setDropdown2] = React.useState(false);
   const [dropdown3, setDropdown3] = React.useState(false);
@@ -860,7 +878,9 @@ const Dashboard: React.FC<Props> = ({ children }) => {
               >
                 <svg
                   className={`text-white w-5 h-5 ${
-                    pathname.includes("theming-control") ? "fill-white" : "fill-logo "
+                    pathname.includes("theming-control")
+                      ? "fill-white"
+                      : "fill-logo "
                   }`}
                   focusable="false"
                   aria-hidden="true"
@@ -881,14 +901,20 @@ const Dashboard: React.FC<Props> = ({ children }) => {
           </NavLink>
         </ul>
       </Drawer>
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, position: "relative", minHeight: "100%" }}
+      <Main
+        open={open}
+        sx={{
+          
+          minHeight: "100%",
+          maxWidth: 1600,
+          marginLeft: "auto",
+          marginRight: "auto",
+        }}
       >
         <Header />
         {children}
         <Footer />
-      </Box>
+      </Main>
     </Box>
   );
 };
