@@ -108,8 +108,8 @@ interface Props {
 
 const Dashboard: React.FC<Props> = ({ children }) => {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
-  const [tempOpen, setTempOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
+  const [tempOpen, setTempOpen] = React.useState(false);
   const [dropdown1, setDropdown1] = React.useState(false);
   const [dropdown2, setDropdown2] = React.useState(false);
   const [dropdown3, setDropdown3] = React.useState(false);
