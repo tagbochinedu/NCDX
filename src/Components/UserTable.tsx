@@ -21,30 +21,31 @@ const columns: GridColDef[] = [
     field: "fullName",
     headerName: "USER",
     flex: 0.2,
-  
+    headerClassName: "super-app-theme--header",
+
     renderCell: ({ row }: CellType) => {
       return (
-        <Box>
-          <Box>
-            <Typography
-              variant="subtitle2"
-              component="p"
-              sx={{ color: "#626477", fontWeight: 600 }}
-            >
-              {row.fullName}
-            </Typography>
-            <Typography
-              variant="caption"
-              component="p"
-              sx={{
-                color: "#B6B6C0",
-                fontWeight: 500,
-                textTransform: "capitalize",
-              }}
-            >
-              @{row.username}
-            </Typography>
-          </Box>
+        <Box
+          
+        >
+          <Typography
+            variant="subtitle2"
+            component="p"
+            sx={{ color: "#626477", fontWeight: 600 }}
+          >
+            {row.fullName}
+          </Typography>
+          <Typography
+            variant="caption"
+            component="p"
+            sx={{
+              color: "#B6B6C0",
+              fontWeight: 500,
+              textTransform: "capitalize",
+            }}
+          >
+            @{row.username}
+          </Typography>
         </Box>
       );
     },
@@ -53,7 +54,8 @@ const columns: GridColDef[] = [
     field: "email",
     headerName: "EMAIL",
     flex: 0.2,
-   
+    headerClassName: "super-app-theme--header",
+
     renderCell: ({ row }: CellType) => {
       return (
         <Box>
@@ -72,6 +74,7 @@ const columns: GridColDef[] = [
     field: "role",
     headerName: "ROLE",
     flex: 0.2,
+    headerClassName: "super-app-theme--header",
 
     renderCell: ({ row }: CellType) => {
       let icon = <></>;
@@ -131,7 +134,8 @@ const columns: GridColDef[] = [
     field: "currentPlan",
     headerName: "PLAN",
     flex: 0.2,
-   
+    headerClassName: "super-app-theme--header",
+
     renderCell: ({ row }: CellType) => {
       return (
         <Box>
@@ -155,7 +159,8 @@ const columns: GridColDef[] = [
     field: "status",
     headerName: "STATUS",
     flex: 0.1,
-   
+    headerClassName: "super-app-theme--header",
+
     renderCell: ({ row }: CellType) => {
       return (
         <Box
@@ -171,6 +176,9 @@ const columns: GridColDef[] = [
             paddingLeft: "10px",
             paddingRight: "10px",
             borderRadius: "20px",
+            "&:focus": {
+              outlineWidth: 0,
+            },
           }}
         >
           <Typography
@@ -196,7 +204,7 @@ const columns: GridColDef[] = [
   {
     field: "ACTIONS",
     headerName: "ACTIONS",
-  
+    headerClassName: "super-app-theme--header",
     flex: 0.1,
     renderCell: ({ row }: CellType) => {
       return <ActionButton id={row.id} />;
@@ -215,17 +223,29 @@ export default function DataTable({ rows }: Props) {
         initialState={{
           pagination: { paginationModel: { pageSize: 5 } },
         }}
+     
         pageSizeOptions={[5, 10, 25]}
         disableRowSelectionOnClick
         autoPageSize={false}
+      
         sx={{
-          maxWidth: '100%',
+          maxWidth: "100%",
           ".MuiDataGrid-columnHeader": {
             backgroundColor: "#EDEFF1",
             color: "rgba(76, 78, 100, 0.87)",
           },
           ".MuiDataGrid-columnSeparator": {
             visibility: "visible",
+          },
+          "& .super-app-theme--header": {
+            "&:focus": {
+              outlineWidth: 0,
+            },
+          },
+          "& .MuiDataGrid-cell": {
+            "&:focus": {
+              outlineWidth: 0,
+            },
           },
         }}
       />
