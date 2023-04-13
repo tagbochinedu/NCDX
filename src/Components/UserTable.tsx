@@ -1,4 +1,4 @@
-import { DataGrid, GridColDef, GridColumnMenu } from "@mui/x-data-grid";
+import { DataGrid, GridColDef} from "@mui/x-data-grid";
 
 import ActionButton from "./ActionButton";
 import { UserInterface } from "../Data/Data";
@@ -214,7 +214,7 @@ const columns: GridColDef[] = [
 
 export default function DataTable({ rows }: Props) {
   return (
-    <div style={{}}>
+    <div style={{width: '100%'}}>
       <DataGrid
         autoHeight
         rows={rows}
@@ -229,7 +229,7 @@ export default function DataTable({ rows }: Props) {
         autoPageSize={false}
       
         sx={{
-          maxWidth: "100%",
+        
           ".MuiDataGrid-columnHeader": {
             backgroundColor: "#EDEFF1",
             color: "rgba(76, 78, 100, 0.87)",

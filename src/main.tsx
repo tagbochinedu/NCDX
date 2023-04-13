@@ -3,29 +3,20 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Provider } from "react-redux";
-import { store } from "./Store/Store";
+import { Store } from "./Store/Store";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#72E128", // Change primary color to red
-    },
-    secondary: {
-      main: "#00FF00", // Change secondary color to green
-    },
-  },
-});
+const persistor = persistStore(Store);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <BrowserRouter>
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
+    <Provider store={Store}>
+      <PersistGate loading={null} persistor={persistor}>
         {" "}
         <App />
-      </ThemeProvider>
+      </PersistGate>
     </Provider>
   </BrowserRouter>
 );

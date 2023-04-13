@@ -36,12 +36,13 @@ const Users: React.FC = () => {
   const status: string[] = ["Pending", "Active", "Inactive"];
 
   const styles = {
-    container: { m: "16px", flexShrink: 1 },
+    container: { m: "16px", display: "flex", flexDirection: "column"},
     filter: {
       paddingTop: 2,
       paddingBottom: 2.5,
       paddingLeft: 2.5,
       paddingRight: 2.5,
+      flexShrink: 1,
     },
     heading: {
       color: "#626477",
@@ -53,6 +54,7 @@ const Users: React.FC = () => {
       marginTop: 3.5,
       paddingTop: 2.5,
       paddingBottom: 2.5,
+      flexShrink: 1,
     },
     export: {
       color: "#B6B6C0",
@@ -160,7 +162,7 @@ const Users: React.FC = () => {
             </UserForm>
           </Box>
         </Box>
-        <UserTable rows={rows} />
+        <UserTable rows={rows}/>
       </BoxWrapper>
     </Box>
   );

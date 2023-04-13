@@ -1,4 +1,6 @@
 import { useState, ChangeEvent } from "react";
+import { Box, Typography, TextField } from "@mui/material";
+import Clickable from "../Components/ReusableComponents/Clickable";
 
 const ComingSoon = () => {
   const [email, setEmail] = useState<string>("");
@@ -8,29 +10,79 @@ const ComingSoon = () => {
   const emailChangeHandler = (event: ChangeEvent<HTMLInputElement>): any => {
     return setEmail(event.target.value);
   };
+  const styles = {
+    box: {
+      minHeight: "78vh",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    title: { color: "#626477", fontSize: "30px" },
+    text: {
+      fontSize: "18px",
+      marginTop: 1,
+      marginBottom: 2,
+      color: "#B6B6C0",
+    },
+    input: {
+      "& .MuiOutlinedInput-root": {
+        paddingLeft: "12px",
+        paddingRight: "12px",
 
+        borderRadius: "8px",
+        fontSize: "18px",
+        borderColor: "#EDEFF1",
+        borderWidth: "",
+        "&:hover": {
+          borderColor: "white",
+        },
+        backgroundColor: "white",
+      },
+    },
+    button: {
+      color: "white",
+      marginLeft: "12px",
+      fontSize: "18px",
+      borderRadius: '8px',
+      marginTop: '-2px'
+    },
+  };
   return (
-    <section className="min-h-[78vh] flex flex-col justify-center items-center">
-      <h4 className="text-logo text-3xl ">We are launching soon 🚀</h4>
-      <p className="text-lg text-lgr mt-2">
+    <Box component="section" sx={styles.box}>
+      {" "}
+      <Typography variant="h4" component="h4" sx={styles.title}>
+        We are launching soon 🚀
+      </Typography>
+      <Typography variant="subtitle1" component="p" sx={styles.text}>
         Our website is opening soon. Please register to get notified when it′s
         ready!
-      </p>
+      </Typography>
       <form onSubmit={submitHandler}>
-        <input
+        <TextField
+          inputProps={{
+            style: {
+              padding: 9,
+            },
+          }}
+          sx={styles.input}
           type="email"
-          className="px-3 py-1.5 text-lg border-lgr2 hover:border-lgr border-2 rounded-lg outline-2 focus:outline-green"
           placeholder="Enter email here"
           onChange={emailChangeHandler}
         />
-        <button
-          type="submit"
-          className="bg-green py-2 rounded-lg ml-3 px-3 text-lg text-white"
+        <Clickable
+          variant="contained"
+          styling={styles.button}
+          disableElevation={false}
+          size="medium"
+          
         >
           NOTIFY
-        </button>
+        </Clickable>
+
+      
       </form>
-    </section>
+    </Box>
   );
 };
 
