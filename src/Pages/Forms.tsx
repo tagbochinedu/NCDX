@@ -71,8 +71,8 @@ const Form: React.FC = () => {
     stepperLength: {
       width: {
         xs: "50px",
-        md:'200px',
-        lg: "400px",
+        sm:'200px',
+        xl: "400px",
       },
       marginLeft: "4px",
       marginRight: "4px",

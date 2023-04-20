@@ -21,6 +21,7 @@ const columns: GridColDef[] = [
     field: "fullName",
     headerName: "USER",
     flex: 0.2,
+    minWidth: 150,
     headerClassName: "super-app-theme--header",
 
     renderCell: ({ row }: CellType) => {
@@ -52,6 +53,7 @@ const columns: GridColDef[] = [
     field: "email",
     headerName: "EMAIL",
     flex: 0.2,
+    minWidth: 150,
     headerClassName: "super-app-theme--header",
 
     renderCell: ({ row }: CellType) => {
@@ -72,6 +74,7 @@ const columns: GridColDef[] = [
     field: "role",
     headerName: "ROLE",
     flex: 0.2,
+    minWidth: 150,
     headerClassName: "super-app-theme--header",
 
     renderCell: ({ row }: CellType) => {
@@ -132,6 +135,7 @@ const columns: GridColDef[] = [
     field: "currentPlan",
     headerName: "PLAN",
     flex: 0.2,
+    minWidth: 100,
     headerClassName: "super-app-theme--header",
 
     renderCell: ({ row }: CellType) => {
@@ -157,6 +161,7 @@ const columns: GridColDef[] = [
     field: "status",
     headerName: "STATUS",
     flex: 0.1,
+    minWidth: 75,
     headerClassName: "super-app-theme--header",
 
     renderCell: ({ row }: CellType) => {
@@ -204,6 +209,7 @@ const columns: GridColDef[] = [
     headerName: "ACTIONS",
     headerClassName: "super-app-theme--header",
     flex: 0.1,
+    minWidth: 90,
     renderCell: ({ row }: CellType) => {
       return <ActionButton id={row.id} />;
     },
@@ -212,7 +218,7 @@ const columns: GridColDef[] = [
 
 export default function DataTable({ rows }: Props) {
   return (
-    <div style={{ width: "100%", display: "flex" }}>
+    
       <DataGrid
         autoHeight
         rows={rows}
@@ -245,6 +251,6 @@ export default function DataTable({ rows }: Props) {
           },
         }}
       />
-    </div>
+   
   );
 }

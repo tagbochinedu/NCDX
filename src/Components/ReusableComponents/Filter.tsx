@@ -23,7 +23,8 @@ export default function BasicSelect({
   return (
     <Box
       sx={{
-        minWidth: "31%",
+        width: { xs: "100%", md: "31%" },
+        marginBottom: {xs: '20px', md: '0px'}
       }}
     >
       <FormControl fullWidth>

@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
+import MenuIcon from "@mui/icons-material/Menu";
 import { selectAllThemes, State } from "../Features/Themes/ThemesSlice";
 
-const Header = () => {
+interface Props {
+  openMenu: () => void;
+}
+
+const Header = ({ openMenu }: Props) => {
   const [scrolled, setScrolled] = useState(0);
   const [transition, setTransition] = useState(false);
   const themeState: State[] = useSelector(selectAllThemes);
@@ -47,7 +52,7 @@ const Header = () => {
     },
     text: {
       marginLeft: "12px",
-      color: "#B6B6C0",
+      color: { xs: "transparent", md: "#B6B6C0" },
     },
     avatar: {
       backgroundColor: "#EDEFF1",
@@ -77,12 +82,16 @@ const Header = () => {
   };
 
   return (
-    <Box
-      component="header"
-      sx={styles.header}
-     
-    >
+    <Box component="header" sx={styles.header}>
       <Box component="div" sx={{ display: "flex" }}>
+        <MenuIcon
+          onClick={openMenu}
+          sx={{
+            display: { xs: "block", md: "none" },
+            marginRight: "10px",
+            fill: "#626477",
+          }}
+        />
         <svg
           className="w-6 h-6 fill-logo"
           focusable="false"
@@ -98,8 +107,10 @@ const Header = () => {
       </Box>
       <Box component="div" sx={styles.avatar}>
         {" "}
-        <Typography variant='subtitle1' component='p' sx={styles.avatarText}>U</Typography>
-        <Box component='div' sx={styles.avatarStatus}/>
+        <Typography variant="subtitle1" component="p" sx={styles.avatarText}>
+          U
+        </Typography>
+        <Box component="div" sx={styles.avatarStatus} />
       </Box>
     </Box>
   );

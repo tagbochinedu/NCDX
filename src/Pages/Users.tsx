@@ -36,7 +36,7 @@ const Users: React.FC = () => {
   const status: string[] = ["Pending", "Active", "Inactive"];
 
   const styles = {
-    container: { m: "16px", display: "flex", flexDirection: "column"},
+    container: { m: "16px", display: { lg: "flex" }, flexDirection: "column" },
     filter: {
       paddingTop: 2,
       paddingBottom: 2.5,
@@ -64,12 +64,14 @@ const Users: React.FC = () => {
         borderColor: "#626477",
       },
       borderRadius: "8px",
+      marginBottom: { xs: "15px", md: "0px" },
     },
     adduser: {
       color: "white",
       fontWeight: 600,
       borderColor: "#B6B6C0",
       borderRadius: "8px",
+      width: { xs: "100%", md: "auto" },
     },
   };
   return (
@@ -78,7 +80,12 @@ const Users: React.FC = () => {
         <Typography variant="h6" component="h6" sx={styles.heading}>
           Search Filters
         </Typography>{" "}
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Box
+          sx={{
+            display: { xs: "block", md: "flex" },
+            justifyContent: "space-between",
+          }}
+        >
           <Filter
             option={roles}
             value={filter.role}
@@ -108,7 +115,7 @@ const Users: React.FC = () => {
       <BoxWrapper styling={styles.table}>
         <Box
           sx={{
-            display: "flex",
+            display: { xs: "block", md: "flex" },
             justifyContent: "space-between",
             marginBottom: 2.5,
             marginLeft: 2.5,
@@ -124,10 +131,17 @@ const Users: React.FC = () => {
           >
             EXPORT
           </Clickable>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box
+            sx={{ display: { xs: "block", md: "flex" }, alignItems: "center" }}
+          >
             <Box
               component="form"
-              sx={{ marginRight: "25px" }}
+              sx={{
+                marginRight: "25px",
+                marginTop: { xs: "10px", md: "0px" },
+                marginBottom: { xs: "10px", md: "0px" },
+                width: { xs: "100%", md: "auto" },
+              }}
               noValidate
               autoComplete="off"
             >
@@ -141,8 +155,8 @@ const Users: React.FC = () => {
                   "& .MuiOutlinedInput-root": {
                     borderRadius: "8px",
                     color: "#626477",
-                    width: "275px",
                   },
+                  width: { xs: "100%", md: "275px" },
                 }}
                 type="text"
                 placeholder="Search User"
@@ -162,7 +176,12 @@ const Users: React.FC = () => {
             </UserForm>
           </Box>
         </Box>
-        <UserTable rows={rows}/>
+        <Box
+          component="div"
+          sx={{ width: "100%", display: "flex", overflow: "scroll" }}
+        >
+          <UserTable rows={rows} />
+        </Box>
       </BoxWrapper>
     </Box>
   );

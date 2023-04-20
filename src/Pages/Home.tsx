@@ -131,7 +131,16 @@ const Dashboard: React.FC<Props> = ({ children }) => {
       }}
     >
       <Drawer
-        sx={{ margin: 1, display: themeState[0].hidden ? "none" : "block" }}
+        sx={{
+          margin: 1,
+          display: {
+            xs: !themeState[0].hidden && !open ? "none" : "block",
+            md: themeState[0].hidden ? "none" : "block",
+          },
+          position:
+            open && tempOpen ? "absolute" : open && !tempOpen ? "relative" : "",
+          width: "0px",
+        }}
         variant="permanent"
         open={open}
         onMouseEnter={() => {
@@ -233,9 +242,6 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                 width: open ? "auto" : "0%",
                 overflow: "hidden",
               }}
-              className={`transition-all ease-in-out duration-500 font-bold text-2xl text-logo ${
-                open ? "block w-auto" : "hidden w-0"
-              }`}
             >
               GCX
             </Typography>
@@ -1257,7 +1263,12 @@ const Dashboard: React.FC<Props> = ({ children }) => {
           marginRight: "auto",
         }}
       >
-        <Header />
+        <Header
+          openMenu={() => {
+            setTempOpen(false);
+            setOpen(true);
+          }}
+        />
         <Box
           component="div"
           sx={{
