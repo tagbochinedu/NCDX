@@ -161,7 +161,7 @@ const columns: GridColDef[] = [
     field: "status",
     headerName: "STATUS",
     flex: 0.1,
-    minWidth: 75,
+    minWidth: 90,
     headerClassName: "super-app-theme--header",
 
     renderCell: ({ row }: CellType) => {
