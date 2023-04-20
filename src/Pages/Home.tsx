@@ -132,6 +132,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
     >
       <Drawer
         sx={{
+          backgroundColor: themeState[0].skin === 'semi dark' ? 'rgb(40, 42, 66)': '' ,
           margin: 1,
           display: {
             xs:
@@ -144,7 +145,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
           },
           position:
             open && tempOpen ? "absolute" : open && !tempOpen ? "relative" : "",
-          width: "0px",
+        
         }}
         variant="permanent"
         open={open}
@@ -592,6 +593,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                       : "inherit",
                   borderRadius: "8px",
                 }}
+                onClick={handleDrawerClose}
               >
                 <NavLink
                   to="/util/coming-soon"
@@ -653,6 +655,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                       : "inherit",
                   borderRadius: "8px",
                 }}
+                onClick={handleDrawerClose}
               >
                 <NavLink
                   to="/util/under-maintenance"
@@ -714,6 +717,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                       : "inherit",
                   borderRadius: "8px",
                 }}
+                onClick={handleDrawerClose}
               >
                 <NavLink
                   to="/util/page-not-found-404"
@@ -775,6 +779,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                       : "inherit",
                   borderRadius: "8px",
                 }}
+                onClick={handleDrawerClose}
               >
                 <NavLink
                   to="/util/not-authorized-401"
@@ -836,6 +841,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                       : "inherit",
                   borderRadius: "8px",
                 }}
+                onClick={handleDrawerClose}
               >
                 <NavLink
                   to="/util/server-error-500"

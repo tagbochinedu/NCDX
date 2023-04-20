@@ -17,13 +17,16 @@ const ComingSoon = () => {
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
+      paddingLeft: "20px",
+      paddingRight: "20px",
     },
-    title: { color: "#626477", fontSize: "30px" },
+    title: { color: "#626477", fontSize: { xs: "20px", sm: "30px" } },
     text: {
-      fontSize: "18px",
+      fontSize: { xs: "12px", sm: "18px" },
       marginTop: 1,
       marginBottom: 2,
       color: "#B6B6C0",
+      textAlign: "center",
     },
     input: {
       "& .MuiOutlinedInput-root": {
@@ -39,13 +42,16 @@ const ComingSoon = () => {
         },
         backgroundColor: "white",
       },
+      width: { xs: "100%", sm: "auto" },
+      marginBottom: { xs: "10px", sm: "0px" },
     },
     button: {
       color: "white",
-      marginLeft: "12px",
+      marginLeft: { xs: "0px", sm: "12px" },
+      width: { xs: "100%", sm: "auto" },
       fontSize: "18px",
-      borderRadius: '8px',
-      marginTop: '-2px'
+      borderRadius: "8px",
+      marginTop: "-2px",
     },
   };
   return (
@@ -75,12 +81,9 @@ const ComingSoon = () => {
           styling={styles.button}
           disableElevation={false}
           size="medium"
-          
         >
           NOTIFY
         </Clickable>
-
-      
       </form>
     </Box>
   );
