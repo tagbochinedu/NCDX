@@ -134,7 +134,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
         sx={{
           margin: 1,
           display: {
-            xs: !themeState[0].hidden && !open ? "none" : "block",
+            xs: 'none',
             md: themeState[0].hidden ? "none" : "block",
           },
           position:
