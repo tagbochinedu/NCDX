@@ -144,7 +144,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
             md: themeState[0].hidden ? "none" : "block",
           },
           position:
-            open && tempOpen ? "absolute" : open && !tempOpen ? "relative" : "",
+            open && tempOpen ? "absolute" : open && !tempOpen ? "absolute" : "relative",
         
         }}
         variant="permanent"
