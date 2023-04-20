@@ -1,4 +1,4 @@
-import { DataGrid, GridColDef} from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 import ActionButton from "./ActionButton";
 import { UserInterface } from "../Data/Data";
@@ -25,9 +25,7 @@ const columns: GridColDef[] = [
 
     renderCell: ({ row }: CellType) => {
       return (
-        <Box
-          
-        >
+        <Box>
           <Typography
             variant="subtitle2"
             component="p"
@@ -214,22 +212,20 @@ const columns: GridColDef[] = [
 
 export default function DataTable({ rows }: Props) {
   return (
-    <div style={{width: '100%'}}>
+    <div style={{ width: "100%", display: "flex" }}>
       <DataGrid
         autoHeight
         rows={rows}
         columns={columns}
         checkboxSelection
         initialState={{
-          pagination: { paginationModel: { pageSize: 5 } },
+          pagination: { paginationModel: { pageSize: 10 } },
         }}
-     
         pageSizeOptions={[5, 10, 25]}
         disableRowSelectionOnClick
         autoPageSize={false}
-      
         sx={{
-        
+          flexShrink: 1,
           ".MuiDataGrid-columnHeader": {
             backgroundColor: "#EDEFF1",
             color: "rgba(76, 78, 100, 0.87)",

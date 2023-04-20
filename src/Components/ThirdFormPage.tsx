@@ -1,4 +1,5 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
+import { Box, Typography, FormControl, TextField } from "@mui/material";
 
 interface Check {
   mystate: any;
@@ -18,91 +19,126 @@ const ThirdFormPage = ({ mystate }: Check) => {
     mystate(true);
   }
 
+  const styles = {
+    textfield: {
+      "& .MuiOutlinedInput-root": {
+        borderRadius: "8px",
+        color: "#626477",
+      },
+    },
+  };
+
   return (
-    <div className="">
-      <h6 className="text-logo text-sm font-semibold">Social Links</h6>
-      <p className="text-lgr text-xs font-light mb-6">Add Social Links</p>
-      <div className="md:flex">
-        <div className="relative z-0 mb-6 group md:mr-3 md:w-6/12">
-          <input
-            type="url"
-            name="floating_email"
-            id="floating_email"
-            className="block py-3 px-3 rounded-md px-0 w-full text-sm text-logo bg-transparent border-[1px] border-lgr appearance-none dark:text-logo dark:border-lgr dark:focus:border-green focus:outline-none focus:ring-0 focus:border-green peer"
-            placeholder=" "
-            required
-            onChange={(e: any) => {
+    <Box component="div">
+      <Typography
+        variant="h6"
+        component="h6"
+        sx={{ color: "#626477", fontSize: "16px", fontWeight: "600" }}
+      >
+        Social Links
+      </Typography>
+      <Typography
+        variant="h6"
+        component="h6"
+        sx={{
+          color: "#B6B6C0",
+          fontSize: "12px",
+          fontWeight: "300",
+          marginBottom: "24px",
+        }}
+      >
+        Add Social Links
+      </Typography>
+
+      <Box component="div" sx={{ display: { md: "flex" } }}>
+        <FormControl
+          sx={{
+            width: { sm: "100%", md: "50%" },
+            marginBottom: "24px",
+            marginRight: { md: "12px" },
+          }}
+        >
+          <TextField
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
               setTwitter(e.target.value);
             }}
-          />
-          <label
-            htmlFor="floating_email"
-            className="peer-focus:font-medium bg-white px-2 -z-10 absolute text-sm text-lgr dark:text-logo duration-300 transform -translate-y-[22px] scale-75 top-3 left-2 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-green peer-focus:z-10 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-[22px] peer-focus:left-2"
-          >
-            Twitter
-          </label>
-        </div>
-        <div className="relative z-0 mb-6 group md:ml-3 md:w-6/12">
-          <input
-            type="email"
-            name="floating_email"
-            id="floating_email"
-            className="block py-3 px-3 rounded-md px-0 w-full text-sm text-logo bg-transparent border-[1px] border-lgr appearance-none dark:text-logo dark:border-lgr dark:focus:border-green focus:outline-none focus:ring-0 focus:border-green peer"
-            placeholder=" "
             required
-            onChange={(e: any) => {
+            id="outlined-basic"
+            margin="normal"
+            label="Twitter"
+            type="url"
+            variant="outlined"
+            placeholder="twitter.com"
+            sx={styles.textfield}
+          />
+        </FormControl>
+        <FormControl
+          sx={{
+            width: { sm: "100%", md: "50%" },
+            marginBottom: "24px",
+            marginLeft: { md: "12px" },
+          }}
+        >
+          <TextField
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
               setFacebook(e.target.value);
             }}
-          />
-          <label
-            htmlFor="floating_email"
-            className="peer-focus:font-medium bg-white px-2 -z-10 absolute text-sm text-lgr dark:text-logo duration-300 transform -translate-y-[22px] scale-75 top-3 left-2 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-green peer-focus:z-10 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-[22px] peer-focus:left-2"
-          >
-            Facebook
-          </label>
-        </div>
-      </div>
-      <div className="md:flex">
-        <div className="relative z-0 mb-6 group md:mr-3 md:w-6/12">
-          <input
-            type="url"
-            name="floating_email"
-            id="floating_email"
-            className="block py-3 px-3 rounded-md px-0 w-full text-sm text-logo bg-transparent border-[1px] border-lgr appearance-none dark:text-logo dark:border-lgr dark:focus:border-green focus:outline-none focus:ring-0 focus:border-green peer"
-            placeholder=" "
             required
-            onChange={(e: any) => {
+            id="outlined-basic"
+            margin="normal"
+            label="Twitter"
+            type="url"
+            variant="outlined"
+            placeholder="twitter.com"
+            sx={styles.textfield}
+          />
+        </FormControl>
+      </Box>
+      <Box component="div" sx={{ display: { md: "flex" } }}>
+        <FormControl
+          sx={{
+            width: { sm: "100%", md: "50%" },
+            marginBottom: "24px",
+            marginRight: { md: "12px" },
+          }}
+        >
+          <TextField
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
               setGoogle(e.target.value);
             }}
-          />
-          <label
-            htmlFor="floating_email"
-            className="peer-focus:font-medium bg-white px-2 -z-10 absolute text-sm text-lgr dark:text-logo duration-300 transform -translate-y-[22px] scale-75 top-3 left-2 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-green peer-focus:z-10 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-[22px] peer-focus:left-2"
-          >
-            Google+
-          </label>
-        </div>
-        <div className="relative z-0 mb-6 group md:ml-3 md:w-6/12">
-          <input
-            type="url"
-            name="floating_email"
-            id="floating_email"
-            className="block py-3 px-3 rounded-md px-0 w-full text-sm text-logo bg-transparent border-[1px] border-lgr appearance-none dark:text-logo dark:border-lgr dark:focus:border-green focus:outline-none focus:ring-0 focus:border-green peer"
-            placeholder=" "
             required
-            onChange={(e: any) => {
+            id="outlined-basic"
+            margin="normal"
+            label="Google+"
+            type="url"
+            variant="outlined"
+            placeholder="google"
+            sx={{ ...styles.textfield, marginTop: "0px" }}
+          />
+        </FormControl>
+        <FormControl
+          sx={{
+            width: { sm: "100%", md: "50%" },
+            marginBottom: "24px",
+            marginLeft: { md: "12px" },
+          }}
+        >
+          <TextField
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
               setLinkedin(e.target.value);
             }}
+            required
+            id="outlined-basic"
+            margin="normal"
+            label="LinkedIn"
+            type="url"
+            variant="outlined"
+            placeholder="linkedin.com"
+            sx={{ ...styles.textfield, marginTop: "0px" }}
           />
-          <label
-            htmlFor="floating_email"
-            className="peer-focus:font-medium bg-white px-2 -z-10 absolute text-sm text-lgr dark:text-logo duration-300 transform -translate-y-[22px] scale-75 top-3 left-2 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-green peer-focus:z-10 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-[22px] peer-focus:left-2"
-          >
-            LinkedIn
-          </label>
-        </div>
-      </div>
-    </div>
+        </FormControl>
+      </Box>
+    </Box>
   );
 };
 

@@ -1,9 +1,16 @@
-import * as React from "react";
+import { useState, ChangeEvent } from "react";
+import {
+  Box,
+  Typography,
+  FormControl,
+  TextField,
+  OutlinedInput,
+ 
+  InputLabel,
+} from "@mui/material";
 import { Theme, useTheme } from "@mui/material/styles";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
+
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 const ITEM_HEIGHT = 48;
@@ -40,12 +47,12 @@ interface Check {
   mystate: any;
 }
 
-const SecondFormPage = ({mystate}: Check) => {
+const SecondFormPage = ({ mystate }: Check) => {
   const theme = useTheme();
-  const [firstName, setFirstName] = React.useState("");
-  const [lastName, setLastName] = React.useState("");
-  const [country, setCountry] = React.useState("");
-  const [language, setLanguage] = React.useState<string[]>([]);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [country, setCountry] = useState("");
+  const [language, setLanguage] = useState<string[]>([]);
 
   const handleChange = (event: SelectChangeEvent<typeof language>) => {
     const {
@@ -66,89 +73,146 @@ const SecondFormPage = ({mystate}: Check) => {
     mystate(true);
   }
 
+  const styles = {
+    textfield: {
+      "& .MuiOutlinedInput-root": {
+        borderRadius: "8px",
+        color: "#626477",
+      },
+    },
+  };
+
   return (
-    <div className="">
-      <h6 className="text-logo text-sm font-semibold">Personal Info</h6>
-      <p className="text-lgr text-xs font-light mb-6">Setup Information</p>
-      <div className="md:flex">
-        <div className="relative z-0 mb-6 group md:mr-3 md:w-6/12">
-          <input
-            type="text"
-            name="floating_email"
-            id="floating_email"
-            className="block py-3 px-3 rounded-md px-0 w-full text-sm text-logo bg-transparent border-[1px] border-lgr appearance-none dark:text-logo dark:border-lgr dark:focus:border-green focus:outline-none focus:ring-0 focus:border-green peer"
-            placeholder=" "
-            required
-            onChange={(e: any) => {
-              setFirstName(e.target.value);
-            }}
-          />
-          <label
-            htmlFor="floating_email"
-            className="peer-focus:font-medium bg-white px-2 -z-10 absolute text-sm text-lgr dark:text-logo duration-300 transform -translate-y-[22px] scale-75 top-3 left-2 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-green peer-blur:z-10 peer-focus:z-10 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-[22px] peer-focus:left-2"
-          >
-            First Name
-          </label>
-        </div>
-        <div className="relative z-0 mb-6 group md:ml-3 md:w-6/12">
-          <input
-            type="text"
-            name="floating_email"
-            id="floating_email"
-            className="block py-3 px-3 rounded-md px-0 w-full text-sm text-logo bg-transparent border-[1px] border-lgr appearance-none dark:text-logo dark:border-lgr dark:focus:border-green focus:outline-none focus:ring-0 focus:border-green peer"
-            placeholder=" "
-            required
-            onChange={(e: any) => {
-              setLastName(e.target.value);
-            }}
-          />
-          <label
-            htmlFor="floating_email"
-            className="peer-focus:font-medium bg-white px-2 -z-10 absolute text-sm text-lgr dark:text-logo duration-300 transform -translate-y-[22px] scale-75 top-3 left-2 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-green peer-focus:z-10 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-[22px] peer-focus:left-2"
-          >
-            Last Name
-          </label>
-        </div>
-      </div>
-      <div className="md:flex mb-6">
-        <select
-          className="bg-white border-[1px] border-lgr focus:outlimd:ne-0 w-full md:w-6/12 rounded-md md:mr-3 p-3 mb-6 md:mb-0"
-          onChange={(e: any) => {
-            setCountry(e.target.value);
+    <Box component="div">
+      <Typography
+        variant="h6"
+        component="h6"
+        sx={{ color: "#626477", fontSize: "16px", fontWeight: "600" }}
+      >
+        Personal Info
+      </Typography>
+      <Typography
+        variant="h6"
+        component="h6"
+        sx={{
+          color: "#B6B6C0",
+          fontSize: "12px",
+          fontWeight: "300",
+          marginBottom: "24px",
+        }}
+      >
+        Setup Information
+      </Typography>
+
+      <Box component="div" sx={{ display: { md: "flex" } }}>
+        <FormControl
+          sx={{
+            width: { sm: "100%", md: "50%" },
+            marginBottom: "24px",
+            marginRight: { md: "12px" },
           }}
         >
-          <option>Country</option>
-          <option className="py-10">UK</option>
-          <option>USA</option>
-          <option>Australia</option>
-          <option>Germany</option>
-        </select>
-        <div className="md:w-6/12 md:ml-3">
-          <FormControl fullWidth>
-            <InputLabel id="demo-multiple-name-label">Language</InputLabel>
-            <Select
-              labelId="demo-multiple-name-label"
-              id="demo-multiple-name"
-              multiple
-              value={language}
-              onChange={handleChange}
-              input={<OutlinedInput label="Name" />}
-              MenuProps={MenuProps}
-            >
-              {languages.map((name) => (
-                <MenuItem
-                  key={name}
-                  value={name}
-                  style={getStyles(name, language, theme)}
-                >
-                  {name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </div>
-      </div>
-    </div>
+          <TextField
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setFirstName(e.target.value);
+            }}
+            required
+            id="outlined-basic"
+            margin="normal"
+            label="First name"
+            type="text"
+            variant="outlined"
+            placeholder="Chinedu Tagbo"
+            sx={styles.textfield}
+          />
+        </FormControl>
+        <FormControl
+          sx={{
+            width: { sm: "100%", md: "50%" },
+            marginBottom: "24px",
+            marginLeft: { md: "12px" },
+          }}
+        >
+          <TextField
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setLastName(e.target.value);
+            }}
+            required
+            id="outlined-basic"
+            margin="normal"
+            label="Last name"
+            type="text"
+            variant="outlined"
+            placeholder="Tagbo"
+            sx={styles.textfield}
+          />
+        </FormControl>
+      </Box>
+      <Box component="div" sx={{ display: { md: "flex" } }}>
+        <FormControl
+          sx={{
+            width: { sm: "100%", md: "50%" },
+            marginBottom: "24px",
+            marginRight: { md: "12px" },
+          }}
+        >
+          <InputLabel id="demo-simple-select-label">Country</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={country}
+            label="Country"
+            sx={{
+              borderRadius: "8px",
+            }}
+            onChange={(e: SelectChangeEvent<string>) => {
+              setCountry(e.target.value);
+            }}
+          >
+            <MenuItem value="" sx={{ color: "#626477" }}>
+              Country
+            </MenuItem>
+            {["USA", "UK", "Australia", "Germany"].map((country, index) => (
+              <MenuItem key={index} value={country} sx={{ color: "#626477" }}>
+                {country}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+
+        <FormControl
+          sx={{
+            width: { sm: "100%", md: "50%" },
+            marginBottom: "24px",
+            marginLeft: { md: "12px" },
+          }}
+        >
+          <InputLabel id="demo-multiple-name-label">Language</InputLabel>
+          <Select
+            labelId="demo-multiple-name-label"
+            id="demo-multiple-name"
+            multiple
+            value={language}
+            onChange={handleChange}
+            input={<OutlinedInput label="Language" />}
+            MenuProps={MenuProps}
+            sx={{
+              borderRadius: "8px",
+            }}
+          >
+            {languages.map((name) => (
+              <MenuItem
+                key={name}
+                value={name}
+                style={getStyles(name, language, theme)}
+              >
+                {name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
+    </Box>
   );
 };
 

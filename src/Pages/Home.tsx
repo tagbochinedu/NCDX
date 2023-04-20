@@ -1251,7 +1251,6 @@ const Dashboard: React.FC<Props> = ({ children }) => {
         open={open}
         sx={{
           p: 0,
-          height: "100vh",
           position: "relative",
           maxWidth: 1600,
           marginLeft: "auto",
@@ -1263,7 +1262,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
           component="div"
           sx={{
             p: 0,
-            height: "100vh",
+            minHeight: "100vh",
             position: "relative",
             maxWidth: 1600,
             marginLeft: "auto",
