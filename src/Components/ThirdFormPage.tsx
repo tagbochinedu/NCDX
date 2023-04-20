@@ -53,7 +53,7 @@ const ThirdFormPage = ({ mystate }: Check) => {
       <Box component="div" sx={{ display: { md: "flex" } }}>
         <FormControl
           sx={{
-            width: { sm: "100%", md: "50%" },
+            width: { xs: "100%", md: "50%" },
             marginBottom: "24px",
             marginRight: { md: "12px" },
           }}
@@ -69,12 +69,12 @@ const ThirdFormPage = ({ mystate }: Check) => {
             type="url"
             variant="outlined"
             placeholder="twitter.com"
-            sx={styles.textfield}
+            sx={{ ...styles.textfield, marginTop: "0px" }}
           />
         </FormControl>
         <FormControl
           sx={{
-            width: { sm: "100%", md: "50%" },
+            width: { xs: "100%", md: "50%" },
             marginBottom: "24px",
             marginLeft: { md: "12px" },
           }}
@@ -90,14 +90,14 @@ const ThirdFormPage = ({ mystate }: Check) => {
             type="url"
             variant="outlined"
             placeholder="twitter.com"
-            sx={styles.textfield}
+            sx={{ ...styles.textfield, marginTop: "0px" }}
           />
         </FormControl>
       </Box>
       <Box component="div" sx={{ display: { md: "flex" } }}>
         <FormControl
           sx={{
-            width: { sm: "100%", md: "50%" },
+            width: { xs: "100%", md: "50%" },
             marginBottom: "24px",
             marginRight: { md: "12px" },
           }}
@@ -118,7 +118,7 @@ const ThirdFormPage = ({ mystate }: Check) => {
         </FormControl>
         <FormControl
           sx={{
-            width: { sm: "100%", md: "50%" },
+            width: { xs: "100%", md: "50%" },
             marginBottom: "24px",
             marginLeft: { md: "12px" },
           }}

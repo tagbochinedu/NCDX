@@ -53,7 +53,10 @@ const Form: React.FC = () => {
 
   const styles = {
     container: {
-      padding: { sm: "20px" },
+      marginTop: {
+        xs: '50px', md: '0px'
+      },
+      padding: { xs: "20px" },
       height: "70vh",
       display: "flex",
       alignItems: "center",
@@ -67,7 +70,7 @@ const Form: React.FC = () => {
     },
     stepperLength: {
       width: {
-        sm: "30%",
+        xs: "50px",
         md:'200px',
         lg: "400px",
       },
@@ -163,7 +166,7 @@ const Form: React.FC = () => {
           onSubmit={(e: any) => {
             handleSubmit(e);
           }}
-          className="p-4 md:p-8 drop-shadow-xl rounded-xl md:rounded-3xl bg-white mt-20"
+          className="p-4 md:p-8 drop-shadow-xl rounded-xl md:rounded-3xl bg-white mt-5"
         >
           <Box
             component="div"
@@ -221,7 +224,7 @@ const Form: React.FC = () => {
           </Box>
           <Box
             component="div"
-            sx={{ display: "flex", justifyContent: "space-between" }}
+            sx={{ display: "flex", justifyContent: "space-between", marginTop: '20px' }}
           >
             <Clickable
               variant="outlined"

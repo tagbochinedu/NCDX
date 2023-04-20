@@ -107,7 +107,7 @@ const SecondFormPage = ({ mystate }: Check) => {
       <Box component="div" sx={{ display: { md: "flex" } }}>
         <FormControl
           sx={{
-            width: { sm: "100%", md: "50%" },
+            width: { xs: "100%", md: "50%" },
             marginBottom: "24px",
             marginRight: { md: "12px" },
           }}
@@ -123,12 +123,12 @@ const SecondFormPage = ({ mystate }: Check) => {
             type="text"
             variant="outlined"
             placeholder="Chinedu Tagbo"
-            sx={styles.textfield}
+            sx={{ ...styles.textfield, marginTop: "0px" }}
           />
         </FormControl>
         <FormControl
           sx={{
-            width: { sm: "100%", md: "50%" },
+            width: { xs: "100%", md: "50%" },
             marginBottom: "24px",
             marginLeft: { md: "12px" },
           }}
@@ -144,14 +144,14 @@ const SecondFormPage = ({ mystate }: Check) => {
             type="text"
             variant="outlined"
             placeholder="Tagbo"
-            sx={styles.textfield}
+            sx={{ ...styles.textfield, marginTop: "0px" }}
           />
         </FormControl>
       </Box>
       <Box component="div" sx={{ display: { md: "flex" } }}>
         <FormControl
           sx={{
-            width: { sm: "100%", md: "50%" },
+            width: { xs: "100%", md: "50%" },
             marginBottom: "24px",
             marginRight: { md: "12px" },
           }}
@@ -182,7 +182,7 @@ const SecondFormPage = ({ mystate }: Check) => {
 
         <FormControl
           sx={{
-            width: { sm: "100%", md: "50%" },
+            width: { xs: "100%", md: "50%" },
             marginBottom: "24px",
             marginLeft: { md: "12px" },
           }}

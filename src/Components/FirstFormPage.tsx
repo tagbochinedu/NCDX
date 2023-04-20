@@ -81,7 +81,7 @@ const FirstFormPage = ({ mystate }: Check) => {
       <Box component="div" sx={{ display: { md: "flex" } }}>
         <FormControl
           sx={{
-            width: { sm: "100%", md: "50%" },
+            width: { xs: "100%", md: "50%" },
             marginBottom: "24px",
             marginRight: { md: "12px" },
           }}
@@ -97,12 +97,12 @@ const FirstFormPage = ({ mystate }: Check) => {
             type="text"
             variant="outlined"
             placeholder="Chinedu Tagbo"
-            sx={styles.textfield}
+            sx={{ ...styles.textfield, marginTop: "0px" }}
           />
         </FormControl>
         <FormControl
           sx={{
-            width: { sm: "100%", md: "50%" },
+            width: { xs: "100%", md: "50%" },
             marginBottom: "24px",
             marginLeft: { md: "12px" },
           }}
@@ -118,14 +118,14 @@ const FirstFormPage = ({ mystate }: Check) => {
             type="email"
             variant="outlined"
             placeholder="Chinedu@Tagbo.com"
-            sx={styles.textfield}
+            sx={{ ...styles.textfield, marginTop: "0px" }}
           />
         </FormControl>
       </Box>{" "}
       <Box component="div" sx={{ display: { md: "flex" } }}>
         <FormControl
           sx={{
-            width: { sm: "100%", md: "50%" },
+            width: { xs: "100%", md: "50%" },
             marginBottom: "24px",
             marginRight: { md: "12px" },
             ...styles.textfield,
@@ -158,7 +158,7 @@ const FirstFormPage = ({ mystate }: Check) => {
         </FormControl>
         <FormControl
           sx={{
-            width: { sm: "100%", md: "50%" },
+            width: { xs: "100%", md: "50%" },
             marginBottom: "24px",
             marginLeft: { md: "12px" },
             ...styles.textfield,
