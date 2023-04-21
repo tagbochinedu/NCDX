@@ -15,6 +15,7 @@ const Dashboard: React.FC = () => {
       flexWrap: "wrap",
       width: "100%",
       paddingBottom: "40px",
+      justifyContent: 'space-between'
     },
     firstRow: { width: { md: "50%", lg: "33%" } },
     innerFirstRow: { display: "flex", justifyContent: "space-between" },
@@ -200,7 +201,7 @@ const Dashboard: React.FC = () => {
           <BarChart />
         </BoxWrapper>
       </Box>
-      <Box component="div" sx={{ width: { md: "100%", lg: "66%" } }}>
+      <Box component="div" sx={{ width: { md: "100%", lg: "66.5%" } }}>
         <BoxWrapper styling={Styles.negativeBarChart}>
           <Box
             component="div"

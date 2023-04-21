@@ -132,7 +132,8 @@ const Dashboard: React.FC<Props> = ({ children }) => {
     >
       <Drawer
         sx={{
-          backgroundColor: themeState[0].skin === 'semi dark' ? 'rgb(40, 42, 66)': '' ,
+          backgroundColor:
+            themeState[0].skin === "semi dark" ? "rgb(40, 42, 66)" : "",
           margin: 1,
           display: {
             xs:
@@ -143,9 +144,15 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                 : "block",
             md: themeState[0].hidden ? "none" : "block",
           },
-          position:
-            open && tempOpen ? "absolute" : open && !tempOpen ? "absolute" : "relative",
-        
+          position: {
+            xs: "absolute",
+            md:
+              open && tempOpen
+                ? "absolute"
+                : open && !tempOpen
+                ? "relative"
+                : "relative",
+          },
         }}
         variant="permanent"
         open={open}
