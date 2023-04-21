@@ -249,7 +249,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
                 overflow: "hidden",
               }}
             >
-              GCX
+              CDA
             </Typography>
           </Box>
           <Box component="div">

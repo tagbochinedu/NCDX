@@ -77,7 +77,7 @@ const BasicMenu = ({ id }: Props) => {
           </Clickable>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <UserForm
+          <Clickable
             variant="text"
             disableElevation={true}
             startIcon={<ModeEditOutlineOutlinedIcon />}
@@ -85,7 +85,7 @@ const BasicMenu = ({ id }: Props) => {
             styling={styles.edit}
           >
             Edit
-          </UserForm>
+          </Clickable>
         </MenuItem>
         <MenuItem onClick={DeleteHandler}>
           <Clickable
