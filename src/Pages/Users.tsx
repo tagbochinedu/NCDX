@@ -54,7 +54,6 @@ const Users: React.FC = () => {
       marginTop: 3.5,
       paddingTop: 2.5,
       paddingBottom: 2.5,
-      flexShrink: 1,
     },
     export: {
       color: "#B6B6C0",
@@ -178,7 +177,7 @@ const Users: React.FC = () => {
         </Box>
         <Box
           component="div"
-          sx={{ width: "100%", display: "flex", overflow: "scroll" }}
+        
         >
           <UserTable rows={rows} />
         </Box>
